@@ -7,6 +7,7 @@ import {
   ScrollView,
   Pressable,
   FlatList,
+  Modal,
 } from "react-native";
 import Footer from "../components/Footer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -51,7 +52,10 @@ export default function Results({ navigation, route }) {
       );
     }
   });
-
+  const [isVisible, setIsVisible] = useState(true);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   return (
     <View style={{}}>
       <ScrollView
@@ -484,10 +488,224 @@ export default function Results({ navigation, route }) {
             )}
           />
         </View>
+        <View style={{ width: "100%", alignItems: "center", marginBottom: 10 }}>
+          {[
+            {
+              name: "Dr. Usman Yousaf",
+              picture: require("../../assets/Ellipse 21.png"),
+            },
+            {
+              name: "Dr. Ury Maniel",
+              picture: require("../../assets/Ellipse 21 (2).png"),
+            },
+            {
+              name: "Dr. Nada Hamza",
+              picture: require("../../assets/Ellipse 21 (1).png"),
+            },
+          ].map((item, index) => (
+            <View
+              key={index}
+              style={{
+                marginTop: 5,
+                backgroundColor: "white",
+                width: "85%",
+                margin: 6,
+                borderRadius: 10,
+                padding: 14,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: 10,
+                }}
+              >
+                <Image
+                  source={item.picture}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    marginHorizontal: 6,
+                    borderRadius: 999,
+                  }}
+                />
+                <View style={{ marginHorizontal: 6 }}>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.name}
+                  </Text>
+                  <Text style={{ color: "#C4C4C4" }}>Dermatologist</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  backgroundColor: "#F8F8FC",
+                  marginTop: 14,
+                  padding: 10,
+                }}
+              >
+                <Image
+                  source={require("../../assets/calendar.png")}
+                  style={{ width: 20, height: 20 }}
+                />
+                <Text style={{ fontWeight: 500 }}>Sunday - Thursday</Text>
+                <Image
+                  source={require("../../assets/bx_time-five.png")}
+                  style={{ width: 20, height: 20 }}
+                />
+                <Text style={{ fontWeight: 500 }}>09am - 03pm</Text>
+              </View>
+            </View>
+          ))}
+        </View>
       </ScrollView>
       <View>
         <Footer navigation={navigation} index={2} />
       </View>
+      <Modal visible={isVisible} transparent>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            width: "100%",
+            backgroundColor: "#ffffff70",
+          }}
+        >
+          <View
+            style={{
+              height: "85%",
+              width: "85%",
+              backgroundColor: "white",
+              borderRadius: 20,
+              overflow: "hidden",
+              padding: 16,
+            }}
+          >
+            <Image
+              source={require("../../assets/tiny.png")}
+              style={{ width: "100%", height: 200 }}
+              resizeMode="contain"
+            />
+            <Text
+              style={{
+                fontWeight: 700,
+                fontSize: 22,
+                textAlign: "center",
+                marginTop: 10,
+              }}
+            >
+              02$ / Month
+            </Text>
+            <View style={{ marginTop: 10 }}>
+              <Text
+                style={{
+                  fontWeight: 700,
+                  fontSize: 20,
+                  marginTop: 6,
+                }}
+              >
+                Take it to another level
+              </Text>
+              <Text
+                style={{
+                  marginTop: 6,
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </Text>
+              <View
+                style={{
+                  alignItems: "center",
+                  width: "100%",
+                  marginTop: 20,
+                }}
+              >
+                <View
+                  style={{
+                    borderRadius: 10,
+                    overflow: "hidden",
+                    width: "100%",
+                    alignItems: "center",
+                  }}
+                >
+                  <Pressable
+                    onPress={() => setIsVisible(false)}
+                    android_ripple={{ color: "#ffffff50" }}
+                    style={{
+                      backgroundColor: "#1F1F1F",
+                      width: "80%",
+                      paddingVertical: 20,
+                      alignItems: "center",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#fff",
+                        fontFamily: "MontserratBold",
+                        fontSize: 17,
+                      }}
+                    >
+                      Go Premium Now
+                    </Text>
+                  </Pressable>
+                </View>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                  width: "100%",
+                  marginTop: 10,
+                }}
+              >
+                <View
+                  style={{
+                    borderRadius: 10,
+                    overflow: "hidden",
+                    width: "100%",
+                    alignItems: "center",
+                  }}
+                >
+                  <Pressable
+                    onPress={() => setIsVisible(false)}
+                    android_ripple={{ color: "#ffffff50" }}
+                    style={{
+                      borderColor: "#1F1F1F",
+                      borderWidth: 2,
+                      width: "80%",
+                      paddingVertical: 20,
+                      alignItems: "center",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#1F1F1F",
+                        fontFamily: "MontserratBold",
+                        fontSize: 17,
+                      }}
+                    >
+                      3 Days Free Trial
+                    </Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }

@@ -88,10 +88,9 @@ export default function SelectWearable({ navigation }) {
           Select A Wearable
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ marginTop: 10 }}>
         <View
           style={{
-            height: (80 * HEIGHT) / 100,
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -114,7 +113,8 @@ export default function SelectWearable({ navigation }) {
               <Pressable
                 android_ripple={{ color: "#ffffff50" }}
                 style={{
-                  backgroundColor: "#1F1F1F",
+                  backgroundColor:
+                    watch.id === selected && !loading ? "#CAA29F" : "#1F1F1F",
                   paddingHorizontal: 40,
                   paddingVertical: 20,
                   alignItems: "center",
